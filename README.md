@@ -31,14 +31,6 @@ export default defineConfig({
 });
 ```
 
-### 2. Add type support
-
-In your `src/env.d.ts`:
-
-```ts
-/// <reference types="@backstro/astrox/env" />
-```
-
 That's it. VS Code will automatically use the Astro language mode for `.astrox` files, giving you full syntax highlighting, TypeScript autocomplete, and HTML completions.
 
 ## Usage
@@ -90,8 +82,9 @@ On `npm install @backstro/astrox`, astrox automatically:
 
 1. Patches `node_modules/astro/astro-jsx.d.ts` — widens event handler types from `string` to `string | Function`, so `onclick={myHandler}` works without TypeScript errors
 2. Updates `.vscode/settings.json` — adds `"*.astrox": "astro"` file association for full editor support
+3. Patches the Astro VS Code extension's TS plugin — registers `.astrox` as a known file extension so imports between `.astrox` components resolve correctly in the editor
 
-Both patches are idempotent and safe to re-run.
+All patches are idempotent and safe to re-run.
 
 ## License
 

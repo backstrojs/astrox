@@ -1,6 +1,6 @@
 {
   "name": "@backstro/astrox",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Astro-like components that compile to Preact — with function event handlers, signals, and full Astro tooling support",
   "type": "module",
   "main": "./dist/index.js",
@@ -17,15 +17,11 @@
     "./server": {
       "types": "./dist/server.d.ts",
       "default": "./dist/server.js"
-    },
-    "./env": {
-      "types": "./env.d.ts"
     }
   },
   "files": [
     "dist",
-    "patch-astro-jsx.mjs",
-    "env.d.ts"
+    "patch-astro-jsx.mjs"
   ],
   "scripts": {
     "build": "tsc",
