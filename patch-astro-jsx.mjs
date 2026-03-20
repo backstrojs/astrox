@@ -12,17 +12,22 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { createRequire } from 'node:module';
 
+// ─── Resolve the consumer project root ──────────────────────────────────────
+// INIT_CWD is set by npm/yarn/pnpm to the directory where the install was
+// invoked, i.e. the project that depends on astrox — not our own package dir.
+const projectRoot = process.env.INIT_CWD || process.env.npm_config_local_prefix || resolve('..', '..', '..');
+
 // ─── 1. Patch astro-jsx.d.ts ────────────────────────────────────────────────
 
 const MARKER = 'AstroxEventHandler';
 
 let filePath;
 try {
-  const require = createRequire(resolve('package.json'));
+  const require = createRequire(resolve(projectRoot, 'package.json'));
   const astroEntry = require.resolve('astro');
   filePath = resolve(dirname(astroEntry), '..', 'astro-jsx.d.ts');
 } catch {
-  filePath = resolve('node_modules', 'astro', 'astro-jsx.d.ts');
+  filePath = resolve(projectRoot, 'node_modules', 'astro', 'astro-jsx.d.ts');
 }
 
 let content;
@@ -51,7 +56,7 @@ if (content && !content.includes(MARKER)) {
 
 // ─── 2. Ensure .vscode/settings.json has *.astrox → astro ───────────────────
 
-const vscodeDir = resolve('.vscode');
+const vscodeDir = resolve(projectRoot, '.vscode');
 const settingsPath = resolve(vscodeDir, 'settings.json');
 
 try {

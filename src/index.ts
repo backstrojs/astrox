@@ -15,7 +15,7 @@ export default function astrox(): AstroIntegration {
 
         updateConfig({
           vite: {
-            plugins: [astroxVitePlugin()],
+            plugins: [astroxVitePlugin() as any],
           },
         });
       },

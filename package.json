@@ -1,6 +1,6 @@
 {
   "name": "@backstro/astrox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Astro-like components that compile to Preact — with function event handlers, signals, and full Astro tooling support",
   "type": "module",
   "main": "./dist/index.js",
