@@ -1,0 +1,63 @@
+{
+  "name": "@backstro/astrox",
+  "version": "0.1.0",
+  "description": "Astro-like components that compile to Preact — with function event handlers, signals, and full Astro tooling support",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "default": "./dist/client.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.js"
+    }
+  },
+  "files": [
+    "dist",
+    "patch-astro-jsx.mjs",
+    "env.d.ts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "postinstall": "node patch-astro-jsx.mjs"
+  },
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/backstrojs/astrox.git"
+  },
+  "keywords": [
+    "astro",
+    "astrox",
+    "preact",
+    "signals",
+    "islands",
+    "components"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "astro": ">=4.0.0",
+    "preact": ">=10.0.0"
+  },
+  "peerDependenciesMeta": {
+    "preact": {
+      "optional": false
+    }
+  },
+  "dependencies": {
+    "@astrojs/compiler": "^2.0.0",
+    "htm": "^3.0.0"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0",
+    "typescript": "^5.5.0",
+    "vite": "^6.0.0"
+  }
+}
